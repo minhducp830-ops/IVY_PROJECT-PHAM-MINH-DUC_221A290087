@@ -427,6 +427,4 @@ document.addEventListener("DOMContentLoaded", function () {
   checkLoginStatus();
 });
 
-// GỌI HÀM KIỂM TRA NGAY KHI CHẠY WEB
-// (Thêm dòng này vào cuối cùng file script.js, sau các hàm khởi tạo khác)
-checkLoginStatus();
+
