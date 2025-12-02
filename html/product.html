@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chi tiết sản phẩm - IVY moda</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <header>
+      <div class="container header-content">
+        <div class="logo">
+          <a href="index3.html"
+            ><img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb7dgdh2LCJzy8DqZxvNO_-1zTAe05SC6SJbRrlneJRKkdCfD7Gd2BadsE4sHBla6IZyc&usqp=CAU"
+              alt="Logo"
+          /></a>
+        </div>
+        <nav class="menu">
+          <ul>
+            <li><a href="index3.html">Trang chủ</a></li>
+            <li><a href="#">Nữ</a></li>
+            <li><a href="#">Nam</a></li>
+            <li><a href="#">Trẻ em</a></li>
+          </ul>
+        </nav>
+        <div class="other-icons">
+          <ul>
+            <li><i class="fa fa-search"></i></li>
+            <li class="cart-icon-wrap" onclick="toggleCart()">
+              <i class="fa fa-shopping-bag"></i>
+              <span class="cart-count">0</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3>Giỏ Hàng</h3>
+        <span class="close-cart" onclick="toggleCart()">&times;</span>
+      </div>
+      <div class="cart-items" id="cartItemsContainer">
+        <p class="empty-msg">Giỏ hàng đang trống</p>
+      </div>
+      <div class="cart-footer">
+        <div class="total-price">
+          <span>Tổng tiền:</span><span id="cartTotal">0đ</span>
+        </div>
+        <button class="checkout-btn">THANH TOÁN</button>
+      </div>
+    </div>
+    <div class="overlay" onclick="toggleCart()"></div>
+
+    <main class="container mt-50" style="padding-top: 120px">
+      <div class="breadcrumb">
+        <a href="index3.html">Trang chủ</a> <span>&gt;</span>
+        <span id="detail-category">Sản phẩm</span> <span>&gt;</span>
+        <span id="breadcrumb-name" style="color: #000">Đang tải...</span>
+      </div>
+
+      <div class="product-detail-container">
+        <div class="product-images">
+          <div class="thumbnail-list" id="thumbnailContainer"></div>
+          <div class="main-image">
+            <img id="mainImg" src="" alt="Ảnh sản phẩm" />
+          </div>
+        </div>
+
+        <div class="product-info-detail">
+          <h1 class="product-title" id="detail-name">
+            Đang tải tên sản phẩm...
+          </h1>
+          <p class="sku">SKU: <span id="detail-id">---</span></p>
+
+          <div class="price-box">
+            <span class="current-price" id="detail-price">0đ</span>
+          </div>
+
+          <p class="color-label">Màu sắc: <strong>Mặc định</strong></p>
+
+          <div class="size-section">
+            <div class="size-options">
+              <button class="size-btn">S</button>
+              <button class="size-btn active">M</button>
+              <button class="size-btn">L</button>
+              <button class="size-btn">XL</button>
+            </div>
+          </div>
+
+          <div class="quantity-section">
+            <label>Số lượng</label>
+            <div class="qty-control">
+              <button onclick="decreaseQty()">-</button>
+              <input type="text" id="qtyInput" value="1" readonly />
+              <button onclick="increaseQty()">+</button>
+            </div>
+          </div>
+
+          <div class="action-buttons">
+            <button class="btn-add-cart" id="btn-add-to-cart">
+              THÊM VÀO GIỎ
+            </button>
+            <button class="btn-buy-now">MUA HÀNG</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="product-description mt-50">
+        <h3>GIỚI THIỆU</h3>
+        <p id="detail-desc">
+          Sản phẩm cao cấp từ bộ sưu tập mới nhất của IVY moda, mang lại vẻ đẹp
+          sang trọng và thanh lịch.
+        </p>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container footer-bottom text-center">
+        <p>&copy; 2025 IVY moda. Demo Website.</p>
+      </div>
+    </footer>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>

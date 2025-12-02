@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IVY moda Clone - Final Version</title>
+    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="../css/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <div class="overlay" onclick="toggleCart()"></div>
+
+    <header>
+      <div class="container header-content">
+        <div class="logo">
+          <a href="#" onclick="filterProducts('all')">
+            <img
+              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb7dgdh2LCJzy8DqZxvNO_-1zTAe05SC6SJbRrlneJRKkdCfD7Gd2BadsE4sHBla6IZyc&usqp=CAU"
+              alt="IVY moda"
+            />
+          </a>
+        </div>
+
+        <nav class="menu">
+          <ul>
+            <li onclick="filterProducts('all')" class="active" id="menu-all">
+              <a>Hàng Mới</a>
+            </li>
+
+            <li class="has-child" onclick="filterProducts('nu')" id="menu-nu">
+              <a>Nữ <i class="fa fa-angle-down"></i></a>
+              <ul class="sub-menu">
+                <li><a href="#">Áo sơ mi</a></li>
+                <li><a href="#">Áo thun</a></li>
+                <li><a href="#">Đầm thiết kế</a></li>
+                <li><a href="#">Chân váy</a></li>
+              </ul>
+            </li>
+
+            <li class="has-child" onclick="filterProducts('nam')" id="menu-nam">
+              <a>Nam <i class="fa fa-angle-down"></i></a>
+              <ul class="sub-menu">
+                <li><a href="#">Áo Polo</a></li>
+                <li><a href="#">Áo sơ mi</a></li>
+                <li><a href="#">Quần tây</a></li>
+                <li><a href="#">Vest</a></li>
+              </ul>
+            </li>
+
+            <li onclick="filterProducts('treem')" id="menu-treem">
+              <a>Trẻ Em</a>
+            </li>
+            <li><a href="#" style="color: red">Sale</a></li>
+          </ul>
+        </nav>
+
+        <div class="other-icons">
+          <ul>
+            <li><i class="fa fa-search"></i></li>
+            <li><i class="fa fa-user"></i></li>
+            <li class="cart-icon-wrap" onclick="toggleCart()">
+              <i class="fa fa-shopping-bag"></i>
+              <span class="cart-count">0</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <div class="cart-sidebar" id="cartSidebar">
+      <div class="cart-header">
+        <h3>Giỏ Hàng</h3>
+        <span class="close-cart" onclick="toggleCart()">&times;</span>
+      </div>
+      <div class="cart-items" id="cartItemsContainer">
+        <p class="empty-msg">Giỏ hàng đang trống</p>
+      </div>
+      <div class="cart-footer">
+        <div class="total-price">
+          <span>Tổng tiền:</span>
+          <span id="cartTotal">0đ</span>
+        </div>
+        <button
+          class="checkout-btn"
+          onclick="alert('Thanh toán thành công (Demo)!')"
+        >
+          THANH TOÁN
+        </button>
+      </div>
+    </div>
+
+    <main>
+      <section class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container hero-content">
+          <h2>FALL/WINTER COLLECTION 2025</h2>
+          <p>Phong cách thời thượng cho mùa lễ hội.</p>
+          <button class="btn" onclick="filterProducts('all')">Xem Ngay</button>
+        </div>
+      </section>
+
+      <section class="container mt-50">
+        <h3
+          class="text-center"
+          style="margin-bottom: 30px; font-size: 28px"
+          id="category-title"
+        >
+          TẤT CẢ SẢN PHẨM
+        </h3>
+        <div class="product-grid" id="productContainer"></div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-column">
+            <h4>GIỚI THIỆU</h4>
+            <ul>
+              <li><a href="#">Về IVY moda</a></li>
+              <li><a href="#">Tuyển dụng</a></li>
+              <li><a href="#">Hệ thống cửa hàng</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>CHÍNH SÁCH</h4>
+            <ul>
+              <li><a href="#">Chính sách thẻ thành viên</a></li>
+              <li><a href="#">Chính sách đổi trả</a></li>
+              <li><a href="#">Chính sách bảo hành</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>HỖ TRỢ</h4>
+            <ul>
+              <li><a href="#">Hướng dẫn mua hàng</a></li>
+              <li><a href="#">Tra cứu đơn hàng</a></li>
+              <li><a href="#">Chăm sóc khách hàng</a></li>
+            </ul>
+          </div>
+          <div class="footer-column">
+            <h4>KẾT NỐI</h4>
+            <ul>
+              <li><a href="#">Facebook</a></li>
+              <li><a href="#">Instagram</a></li>
+              <li><a href="#">Youtube</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <p>&copy; 2025 IVY moda. Demo Website.</p>
+        </div>
+      </div>
+    </footer>
+    <div class="chat-toggle-btn" onclick="toggleChatWindow()">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <path
+          d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"
+        ></path>
+      </svg>
+    </div>
+    <!-- Chat Box  -->
+    <div class="chat-window" id="chatWindow">
+      <div class="chat-header">
+        <div class="chat-title">Hỗ trợ IVY moda</div>
+        <span class="close-chat" onclick="toggleChatWindow()">&times;</span>
+      </div>
+      <div class="chat-body" id="chatBody">
+        <div class="message bot-message">
+          Xin chào! IVY moda có thể giúp gì cho bạn?
+        </div>
+      </div>
+      <div class="chat-footer">
+        <input
+          type="text"
+          id="chatInput"
+          placeholder="Nhập tin nhắn..."
+          onkeypress="handleEnter(event)"
+        />
+        <button onclick="sendMessage()">Gửi</button>
+      </div>
+    </div>
+
+    <script src="../js/script.js"></script>
+  </body>
+</html>
