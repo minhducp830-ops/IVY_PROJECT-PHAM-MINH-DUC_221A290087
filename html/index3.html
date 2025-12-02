@@ -18,10 +18,7 @@
       <div class="container header-content">
         <div class="logo">
           <a href="#" onclick="filterProducts('all')">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSb7dgdh2LCJzy8DqZxvNO_-1zTAe05SC6SJbRrlneJRKkdCfD7Gd2BadsE4sHBla6IZyc&usqp=CAU"
-              alt="IVY moda"
-            />
+            <img src="/images/logo2.png" alt="IVY moda" />
           </a>
         </div>
 
@@ -61,7 +58,18 @@
         <div class="other-icons">
           <ul>
             <li><i class="fa fa-search"></i></li>
-            <li><i class="fa fa-user"></i></li>
+            <li onclick="toggleLoginPopup()">
+              <i class="fa fa-user" id="user-icon"></i>
+              <span
+                id="user-name"
+                style="
+                  font-size: 13px;
+                  font-weight: bold;
+                  margin-left: 5px;
+                  display: none;
+                "
+              ></span>
+            </li>
             <li class="cart-icon-wrap" onclick="toggleCart()">
               <i class="fa fa-shopping-bag"></i>
               <span class="cart-count">0</span>
@@ -192,6 +200,33 @@
           onkeypress="handleEnter(event)"
         />
         <button onclick="sendMessage()">Gửi</button>
+      </div>
+    </div>
+    <!--ĐĂNG NHẬP TÀI KHOẢN -->
+    <div
+      class="login-overlay"
+      id="loginOverlay"
+      onclick="toggleLoginPopup()"
+    ></div>
+    <div class="login-popup" id="loginPopup">
+      <span class="close-login" onclick="toggleLoginPopup()">×</span>
+      <h3>ĐĂNG NHẬP</h3>
+      <p class="login-desc">
+        Hãy đăng nhập để hưởng những đặc quyền riêng cho thành viên.
+      </p>
+
+      <div class="form-group">
+        <input type="text" id="username" placeholder="Tài khoản (admin)" />
+      </div>
+      <div class="form-group">
+        <input type="password" id="password" placeholder="Mật khẩu (123456)" />
+      </div>
+
+      <button class="btn-login" onclick="handleLogin()">ĐĂNG NHẬP</button>
+
+      <div class="login-footer">
+        <a href="#">Quên mật khẩu?</a>
+        <a href="#">Đăng ký thành viên mới</a>
       </div>
     </div>
 

@@ -335,7 +335,7 @@ header {
   margin-top: 50px;
 }
 
-/* ================= FOOTER (MỚI CẬP NHẬT) ================= */
+/* ================= FOOTER ================= */
 footer {
   background-color: #222; /* Màu nền đen */
   color: #fff;
@@ -677,3 +677,42 @@ footer {
     justify-content: center;
   }
 }
+/* ================= LOGIN POPUP ================= */
+.login-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5); z-index: 2001; display: none;
+}
+
+.login-popup {
+    position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    width: 400px; background: #fff; padding: 40px;
+    z-index: 2002; display: none; text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3); border-radius: 5px;
+}
+
+.close-login {
+    position: absolute; top: 10px; right: 15px; font-size: 30px; cursor: pointer; color: #666;
+}
+
+.login-popup h3 { margin-bottom: 10px; font-size: 24px; letter-spacing: 1px; }
+.login-desc { font-size: 14px; color: #666; margin-bottom: 25px; }
+
+.form-group { margin-bottom: 15px; }
+.form-group input {
+    width: 100%; padding: 12px; border: 1px solid #ddd; outline: none; font-size: 14px;
+}
+
+.btn-login {
+    width: 100%; padding: 12px; background: #000; color: #fff;
+    border: none; font-weight: bold; cursor: pointer; margin-top: 10px;
+    transition: 0.3s;
+}
+.btn-login:hover { background: #333; }
+
+.login-footer {
+    margin-top: 20px; display: flex; justify-content: space-between; font-size: 13px;
+}
+.login-footer a { color: #666; text-decoration: underline; }
+
+/* Trạng thái hiển thị */
+.login-overlay.active, .login-popup.active { display: block; }

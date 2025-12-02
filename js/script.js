@@ -85,7 +85,7 @@ const products = [
 
 let cart = [];
 
-// ================= 2. HIỂN THỊ SẢN PHẨM Ở TRANG CHỦ (Đã sửa để lấy ảnh từ mảng images) =================
+// ================= 2. HIỂN THỊ SẢN PHẨM Ở TRANG CHỦ =================
 function renderProducts(filterCategory) {
   const container = document.getElementById("productContainer");
   const title = document.getElementById("category-title");
@@ -121,9 +121,11 @@ function renderProducts(filterCategory) {
     }
 
     const html = `
-            <div class="product-card">
+           <div class="product-card">
                 <div class="product-image">
-                    <a href="product.html?id=${product.id}"><img src="${displayImage}" alt="${product.name}"></a>
+                    <a href="product.html?id=${product.id}">
+                        <img src="${displayImage}" alt="${product.name}">
+                    </a>
                 </div>
                 <div class="product-info text-center">
                     <a href="product.html?id=${product.id}" class="product-name">${product.name}</a>
@@ -135,7 +137,7 @@ function renderProducts(filterCategory) {
   });
 }
 
-// ================= 3. XỬ LÝ TRANG CHI TIẾT (Đã sửa để tự động tạo nhiều ảnh) =================
+// ================= 3. XỬ LÝ TRANG CHI TIẾT =================
 function loadProductDetail() {
   const mainImg = document.getElementById("mainImg");
   const thumbnailContainer = document.getElementById("thumbnailContainer"); // Lấy container
@@ -159,7 +161,7 @@ function loadProductDetail() {
         product.category.toUpperCase();
     }
 
-    // --- XỬ LÝ ẢNH THÔNG MINH ---
+    // --- XỬ LÝ ẢNH ---
     let imageList = [];
     // Kiểm tra xem dữ liệu dùng 'images' hay 'img'
     if (product.images && product.images.length > 0) {
@@ -279,7 +281,7 @@ function filterProducts(category) {
   renderProducts(category);
 }
 
-// ================= 5. CHATBOX LOGIC  =================
+// ================= 5. CHATBOX =================
 function toggleChatWindow() {
   const chatWindow = document.getElementById("chatWindow");
   if (!chatWindow) return;
@@ -331,6 +333,80 @@ function botReply(userText) {
   addMessage(botText, "bot-message");
   z;
 }
+// ================= 6. CHỨC NĂNG ĐĂNG NHẬP  =================
+
+// 1. Ẩn/Hiện Popup
+function toggleLoginPopup() {
+  const overlay = document.getElementById("loginOverlay");
+  const popup = document.getElementById("loginPopup");
+
+  // Nếu đã đăng nhập thì hỏi đăng xuất
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  if (isLoggedIn === "true") {
+    if (confirm("Bạn có muốn đăng xuất không?")) {
+      logout();
+    }
+    return; // Không hiện popup đăng nhập nữa
+  }
+
+  // Nếu chưa đăng nhập thì hiện popup
+  if (overlay && popup) {
+    overlay.classList.toggle("active");
+    popup.classList.toggle("active");
+  }
+}
+
+// 2. Xử lý Đăng nhập
+function handleLogin() {
+  const userIn = document.getElementById("username").value;
+  const passIn = document.getElementById("password").value;
+
+  // Tài khoản cố định để test
+  if (userIn === "admin" && passIn === "123456") {
+    alert("Đăng nhập thành công!");
+
+    // Lưu trạng thái vào bộ nhớ trình duyệt
+    localStorage.setItem("isLoggedIn", "true");
+    localStorage.setItem("username", "Admin"); // Lưu tên người dùng
+
+    // Cập nhật giao diện và đóng popup
+    checkLoginStatus();
+    toggleLoginPopup();
+  } else {
+    alert("Sai tài khoản hoặc mật khẩu! (Thử: admin / 123456)");
+  }
+}
+
+// 3. Xử lý Đăng xuất
+function logout() {
+  localStorage.removeItem("isLoggedIn");
+  localStorage.removeItem("username");
+  alert("Đã đăng xuất!");
+  checkLoginStatus(); // Reset lại giao diện
+}
+
+// 4. Kiểm tra trạng thái khi tải trang
+function checkLoginStatus() {
+  const isLoggedIn = localStorage.getItem("isLoggedIn");
+  const savedName = localStorage.getItem("username");
+
+  const userIcon = document.getElementById("user-icon");
+  const userNameSpan = document.getElementById("user-name");
+
+  if (isLoggedIn === "true" && userNameSpan) {
+    // Nếu đã đăng nhập
+    if (userIcon) userIcon.className = "fa fa-sign-out"; // Đổi icon thành nút thoát
+    userNameSpan.innerText = "Hi, " + savedName;
+    userNameSpan.style.display = "inline";
+  } else {
+    // Nếu chưa đăng nhập
+    if (userIcon) userIcon.className = "fa fa-user"; // Trả về icon người
+    if (userNameSpan) {
+      userNameSpan.innerText = "";
+      userNameSpan.style.display = "none";
+    }
+  }
+}
 
 // Logic chọn size
 document.addEventListener("DOMContentLoaded", function () {
@@ -348,4 +424,9 @@ document.addEventListener("DOMContentLoaded", function () {
   renderProducts("all");
   loadProductDetail();
   updateCartUI();
+  checkLoginStatus();
 });
+
+// GỌI HÀM KIỂM TRA NGAY KHI CHẠY WEB
+// (Thêm dòng này vào cuối cùng file script.js, sau các hàm khởi tạo khác)
+checkLoginStatus();
