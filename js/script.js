@@ -213,6 +213,7 @@ function addToCart(productId) {
   }
 }
 
+// ================= CẬP NHẬT HÀM HIỂN THỊ GIỎ HÀNG =================
 function updateCartUI() {
   const cartCount = document.querySelector(".cart-count");
   const cartContainer = document.getElementById("cartItemsContainer");
@@ -227,22 +228,34 @@ function updateCartUI() {
   } else {
     cartContainer.innerHTML = "";
     let total = 0;
+
     cart.forEach((item, index) => {
       total += item.price;
       const formattedPrice = new Intl.NumberFormat("vi-VN", {
         style: "currency",
         currency: "VND",
       }).format(item.price);
+
+      // --- SỬA LỖI ẢNH Ở ĐÂY ---
+      // Ưu tiên lấy ảnh trong mảng images, nếu không có thì lấy img cũ
+      let itemImage = "";
+      if (item.images && item.images.length > 0) {
+        itemImage = item.images[0];
+      } else {
+        itemImage = item.img;
+      }
+
       cartContainer.innerHTML += `
-                <div class="cart-item">
-                    <img src="${item.img}">
-                    <div class="cart-item-info">
-                        <div class="cart-item-title">${item.name}</div>
-                        <div class="cart-item-price">${formattedPrice}</div>
-                        <div class="remove-item" onclick="removeFromCart(${index})">Xóa</div>
-                    </div>
-                </div>`;
+        <div class="cart-item">
+            <img src="${itemImage}" alt="${item.name}">
+            <div class="cart-item-info">
+                <div class="cart-item-title">${item.name}</div>
+                <div class="cart-item-price">${formattedPrice}</div>
+                <div class="remove-item" onclick="removeFromCart(${index})">Xóa</div>
+            </div>
+        </div>`;
     });
+
     if (cartTotal)
       cartTotal.innerText = new Intl.NumberFormat("vi-VN", {
         style: "currency",
@@ -250,7 +263,6 @@ function updateCartUI() {
       }).format(total);
   }
 }
-
 function removeFromCart(index) {
   cart.splice(index, 1);
   updateCartUI();
@@ -426,5 +438,3 @@ document.addEventListener("DOMContentLoaded", function () {
   updateCartUI();
   checkLoginStatus();
 });
-
-
